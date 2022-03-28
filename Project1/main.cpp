@@ -149,13 +149,18 @@ void keyboardDownHandler(unsigned char key, int a, int b)
     if (key == 27)
         glutExit();
 	if(key == 119) //w
+		keybuffer[119] = true;
 		cameraPos += speed * cameraFront;
 	if(key == 97) //a
+		keybuffer[97] = true;
 		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * speed;
 	if(key == 115) //s
+		keybuffer[115] = true;
 		cameraPos -= speed * cameraFront;
 	if(key == 100) //d
+		keybuffer[100] = true;
 		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * speed;
+		
 		//up
 		//down
 		//pitch
@@ -168,13 +173,13 @@ void keyboardUpHandler(unsigned char key, int a, int b)
 {
 	float speed = multiplier * deltatime;
 	if (key == 119) //w
-		keybuffer[119] = true;
+		keybuffer[119] = false;
 	if (key == 97) //a
-		keybuffer[97] = true;
+		keybuffer[97] = false;
 	if (key == 115) //s
-		keybuffer[115] = true;
+		keybuffer[115] = false;
 	if (key == 100) //d
-		keybuffer[100] = true;
+		keybuffer[100] = false;
 	//up
 	//down
 	//pitch
