@@ -85,7 +85,7 @@ glm::vec3 cameraPos = glm::vec3(-1.0, 2.0, 12.0);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 //camera speed
-const float multiplier = 0.08f;
+const float multiplier = 0.01f;
 
 bool res;
 
@@ -142,24 +142,19 @@ bool res;
 //--------------------------------------------------------------------------------
 // Keyboard handling
 //--------------------------------------------------------------------------------
+void KeyboardHelper(unsigned char key, bool down) {
+	if (down)
+		keybuffer[key] = true;
+	else
+		keybuffer[key] = false;
+}
 
 void keyboardDownHandler(unsigned char key, int a, int b)
 {
-	float speed = multiplier * deltatime;
+	KeyboardHelper(key, true);
     if (key == 27)
         glutExit();
-	if(key == 119) //w
-		keybuffer[119] = true;
-		cameraPos += speed * cameraFront;
-	if(key == 97) //a
-		keybuffer[97] = true;
-		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * speed;
-	if(key == 115) //s
-		keybuffer[115] = true;
-		cameraPos -= speed * cameraFront;
-	if(key == 100) //d
-		keybuffer[100] = true;
-		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * speed;
+
 		
 		//up
 		//down
@@ -171,15 +166,7 @@ void keyboardDownHandler(unsigned char key, int a, int b)
 
 void keyboardUpHandler(unsigned char key, int a, int b)
 {
-	float speed = multiplier * deltatime;
-	if (key == 119) //w
-		keybuffer[119] = false;
-	if (key == 97) //a
-		keybuffer[97] = false;
-	if (key == 115) //s
-		keybuffer[115] = false;
-	if (key == 100) //d
-		keybuffer[100] = false;
+	KeyboardHelper(key, false);
 	//up
 	//down
 	//pitch
@@ -195,10 +182,23 @@ void keyboardUpHandler(unsigned char key, int a, int b)
 
 void Render()
 {
+
 	//get DeltaTime
 	int timepassed = glutGet(GLUT_ELAPSED_TIME);
 	deltatime = timepassed - previoustimepassed; 
 	previoustimepassed = timepassed;
+
+	//we put this in Render to make it SUPPPPPPAAAAAAA SMOOOOOOOOOOTH
+	float speed = multiplier * deltatime;
+
+	if (keybuffer[119]) //w
+		cameraPos += speed * cameraFront;
+	if (keybuffer[97]) //a
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * speed;
+	if (keybuffer[115]) //s
+		cameraPos -= speed * cameraFront;
+	if (keybuffer[100]) //d
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * speed;
 
 	//clearbuffer 
     glClearColor(0.0, 0.0, 0.0, 1.0);
