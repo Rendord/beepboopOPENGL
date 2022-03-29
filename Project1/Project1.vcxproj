@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -70,8 +70,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include;C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include;c:\Libraries\glm-0.9.6.3\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>c:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;c:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Libraries\glm-0.9.6.3\glm;C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include;C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include</IncludePath>
+    <LibraryPath>C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;C:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;c:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;c:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Libraries\glm-0.9.6.3\glm;C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include;C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include</IncludePath>
+    <LibraryPath>C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;C:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,7 +87,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freeglut.lib;glew32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -95,6 +99,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>freeglut.lib;glew32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
