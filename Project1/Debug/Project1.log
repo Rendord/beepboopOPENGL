@@ -1,0 +1,9 @@
+﻿  glsl.cpp
+  main.cpp
+C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include\GL\glew.h(1205,14): error C1083:  Cannot open include file: 'GL/glu.h': No such file or directory
+  objloader.cpp
+C:\Users\rendo\Desktop\nog een kanker jaar\computer graphics\CG - Lecture 8 - 0 - Skeleton start\Project1\main.cpp(1,10): error C1083:  Cannot open include file: 'iostream': No such file or directory
+  texture.cpp
+C:\Users\rendo\Desktop\nog een kanker jaar\computer graphics\CG - Lecture 8 - 0 - Skeleton start\Project1\objloader.cpp(1,10): error C1083:  Cannot open include file: 'vector': No such file or directory
+  Generating Code...
+C:\Users\rendo\Desktop\nog een kanker jaar\computer graphics\CG - Lecture 8 - 0 - Skeleton start\Project1\texture.cpp(1,10): error C1083:  Cannot open include file: 'stdio.h': No such file or directory
