@@ -106,41 +106,37 @@ bool res;
 //      0----------1
 //------------------------------------------------------------
 
-const GLfloat vertices2[] = {
-	// front
-	-1.0, -1.0, 1.0,
-	1.0, -1.0, 1.0,
-	1.0, 1.0, 1.0,
-	-1.0, 1.0, 1.0,
-	// back
-	-1.0, -1.0, -1.0,
-	1.0, -1.0, -1.0,
-	1.0, 1.0, -1.0,
-	-1.0, 1.0, -1.0,
-
-	//top
-	0.0, 2.0, 0.0
-};
-
-const GLfloat colors[] = {
-	// front colors
-	1.0, 1.0, 0.0,
-	0.0, 1.0, 0.0,
-	0.0, 0.0, 1.0,
-	1.0, 1.0, 1.0,
-	// back colors
-	0.0, 1.0, 1.0,
-	1.0, 0.0, 1.0,
-	1.0, 0.0, 0.0,
-	1.0, 1.0, 0.0
-};
-
-GLushort cube_elements[] = {
-	0,1,1,2,2,3,3,0,  // front
-	0,4,1,5,3,7,2,6,  // front to back
-	4,5,5,6,6,7,7,4,   //back
-	2,8,3,8,6,8,7,8		//top
-};
+//const GLfloat vertices[] = {
+//    // front
+//    -1.0, -1.0, 1.0,
+//    1.0, -1.0, 1.0,
+//    1.0, 1.0, 1.0,
+//    -1.0, 1.0, 1.0,
+//    // back
+//    -1.0, -1.0, -1.0,
+//    1.0, -1.0, -1.0,
+//    1.0, 1.0, -1.0,
+//    -1.0, 1.0, -1.0,
+//};
+//
+//const GLfloat colors[] = {
+//    // front colors
+//    1.0, 1.0, 0.0,
+//    0.0, 1.0, 0.0,
+//    0.0, 0.0, 1.0,
+//    1.0, 1.0, 1.0,
+//    // back colors
+//    0.0, 1.0, 1.0,
+//    1.0, 0.0, 1.0,
+//    1.0, 0.0, 0.0,
+//    1.0, 1.0, 0.0,
+//};
+//
+//GLushort cube_elements[] = {
+//    0,1,1,2,2,3,3,0,  // front
+//    0,4,1,5,3,7,2,6,  // front to back
+//    4,5,5,6,6,7,7,4   // back
+//};
 
 
 //--------------------------------------------------------------------------------
@@ -376,11 +372,9 @@ void InitBuffers(int teller)
 
 
 
-	GLuint vbo_colors;
-    GLuint ibo_elements;
+	//vbo_colors;
+    //GLuint ibo_elements;
 
-
-	//do objects
 	for (int i = 0; i < teller; i++) {
 
 		// vbo for uvs
@@ -400,7 +394,11 @@ void InitBuffers(int teller)
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
-		
+		// vbo for vertices
+		//glGenBuffers(1, &vbo_vertices);
+		//glBindBuffer(GL_ARRAY_BUFFER, vbo_vertices);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		//glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glGenBuffers(1, &vbo_vertices);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_vertices);
 		glBufferData(GL_ARRAY_BUFFER,
@@ -409,8 +407,18 @@ void InitBuffers(int teller)
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
+		// vbo for colors
+		//glGenBuffers(1, &vbo_colors);
+		//glBindBuffer(GL_ARRAY_BUFFER, vbo_colors);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
+		//glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-
+		//// vbo for elements
+		//glGenBuffers(1, &ibo_elements);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_elements);
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_elements),
+		//    cube_elements, GL_STATIC_DRAW);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 		// Get vertex attributes
 		GLuint normal_id = glGetAttribLocation(program_id, "normal");
@@ -443,61 +451,18 @@ void InitBuffers(int teller)
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
-	
+		// Bind colors to vao
+		//glBindBuffer(GL_ARRAY_BUFFER, vbo_colors);
+		//glVertexAttribPointer(color_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		//glEnableVertexAttribArray(color_id);
+		//glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		// Bind elements to vao
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_elements);
+
 		// Stop bind to vao
 		glBindVertexArray(0);
 	}
-
-	//do cube
-	{
-		//vbo for vertices
-		glGenBuffers(1, &vbo_vertices);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_vertices);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		//vbo for colors
-		glGenBuffers(1, &vbo_colors);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_colors);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-		//// vbo for elements
-		glGenBuffers(1, &ibo_elements);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_elements);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_elements),
-			cube_elements, GL_STATIC_DRAW);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-		glGenVertexArrays(1, &vao[teller + 3]);
-
-		position_id = glGetAttribLocation(program_id, "position");
-		color_id = glGetAttribLocation(program_id, "color");
-
-		// Bind to vao
-		glBindVertexArray(vao[teller + 3]);
-
-		// Bind vertices to vao
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_vertices);
-		glVertexAttribPointer(position_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(position_id);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		// Bind colors to vao
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_colors);
-		glVertexAttribPointer(color_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(color_id);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		// Bind elements to vao
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_elements);
-
-		glBindVertexArray(0);
-
-	}
-
-
 
 	glUseProgram(program_id);
     // Make uniform vars
